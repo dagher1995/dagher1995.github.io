@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.main-card {
+    border-style: solid;
+    border-color: #000000;
+    margin: auto;
+    position: absolute;
+    top: 0; 
+    left: 0;
+    bottom: 0; 
+    right: 0;
+    height: 500px;
+    width: 900px;
+}
+
+.coins-prices-container {
+    display: flex; /* magic maker */
+    justify-content: space-around; /* set equal space between boxes */
+}
+
+.price-card {
+    margin-top: 5px;
+    display: flex;
+    width: 160px;
+    height: 180px;
+    border-style: solid;
+    border-color: #b82323;
+    position: relative;
+}
+
+.coin-icon {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+.coin-name {
+    margin-top: 20px;
+    margin-left: 30px;
+    color: #000000;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.coin-price {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: 70px;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.coin-owned {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: right;
+    margin-right: 5px;
+    margin-top: 110px;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.coin-value {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
