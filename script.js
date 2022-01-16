@@ -18,6 +18,13 @@ let ETH_VALUE_CONTAINER = document.getElementById('eth-value-container');
 let XRP_VALUE_CONTAINER = document.getElementById('xrp-value-container');
 let BNB_VALUE_CONTAINER = document.getElementById('bnb-value-container');
 
+let TOTAL_TABLE_USD = document.getElementById('total-table-usd');
+let TOTAL_TABLE_OMR = document.getElementById('total-table-omr');
+let ORIGINAL_TABLE_USD = document.getElementById('original-table-usd');
+let ORIGINAL_TABLE_OMR = document.getElementById('original-table-omr');
+let PROFIT_TABLE_USD = document.getElementById('profit-table-usd');
+let PROFIT_TABLE_OMR = document.getElementById('profit-table-omr');
+
 const btc_url='https://api3.binance.com/api/v3/ticker/price?symbol=BTCUSDT';
 const eth_url='https://api3.binance.com/api/v3/ticker/price?symbol=ETHUSDT';
 const xrp_url='https://api3.binance.com/api/v3/ticker/price?symbol=XRPUSDT';
@@ -39,6 +46,17 @@ let eth_buy_value = 50.0 / 0.385;
 let xrp_buy_value = 50.0 / 0.385;
 let bnb_buy_value = 0.5;
 
+let btc_now_value = 0.0;
+let eth_now_value = 0.0; 
+let xrp_now_value = 0.0;
+let bnb_now_value = 0.0;
+
+//people paid
+let dagher = 50;
+let laith = 50;
+let ghaiht = 0;
+let suliman = 0;
+
 BTC_OWNED.innerHTML = "لدينا: " + btc_owned;
 ETH_OWNED.innerHTML = "لدينا: " + eth_owned;
 XRP_OWNED.innerHTML = "لدينا: " + xrp_owned;
@@ -52,6 +70,25 @@ const Http = new XMLHttpRequest();
 function getPrice(url) {
     Http.open("GET", url);
     Http.send();
+}
+
+function updateSummary() {
+    total_usd = parseFloat(btc_now_value) + parseFloat(eth_now_value) + parseFloat(xrp_now_value) + parseFloat(bnb_now_value);
+    TOTAL_TABLE_USD.innerHTML =  parseFloat(total_usd).toFixed(3) + " $";
+    TOTAL_TABLE_OMR.innerHTML = "OMR " + parseFloat(total_usd*0.385).toFixed(3);
+    let origin = parseFloat(dagher+laith+ghaiht+suliman)
+    ORIGINAL_TABLE_USD.innerHTML = parseFloat(origin / 0.385).toFixed(3) + " $";
+    ORIGINAL_TABLE_OMR.innerHTML = "OMR " + parseFloat(origin).toFixed(3);
+    let profit_usd = parseFloat(total_usd - (origin/0.385)).toFixed(3);
+    if(profit_usd > 0) {
+        PROFIT_TABLE_USD.style.color = "green";
+        PROFIT_TABLE_OMR.style.color = "green";
+    } else {
+        PROFIT_TABLE_USD.style.color = "red";
+        PROFIT_TABLE_OMR.style.color = "red";
+    }
+    PROFIT_TABLE_USD.innerHTML = parseFloat(profit_usd).toFixed(3) + " $";
+    PROFIT_TABLE_OMR.innerHTML = "OMR " + parseFloat(profit_usd*0.385).toFixed(3);
 }
 
 function getCoinPrice(url, node, number) {
@@ -70,13 +107,13 @@ function getCoinPrice(url, node, number) {
                 BTC_PRICE.style.color = "red";
             } 
             node.innerHTML = "$ " + n;
-            let value = (n * btc_owned).toFixed(2)
-            if(value > btc_buy_value) {
+            btc_now_value = (n * btc_owned).toFixed(2)
+            if(btc_now_value > btc_buy_value) {
                 BTC_VALUE_CONTAINER.style.backgroundColor = "green";
             } else {
                 BTC_VALUE_CONTAINER.style.backgroundColor = "red";
             }
-            BTC_VALUE.innerHTML = "$ " + value;
+            BTC_VALUE.innerHTML = "$ " + btc_now_value;
             btc_last_price = n;
         } else if(number === 2) {
             if(n > eth_last_price) {
@@ -85,13 +122,13 @@ function getCoinPrice(url, node, number) {
                 ETH_PRICE.style.color = "red";
             } 
             node.innerHTML = "$ " + n;
-            let value = (n * eth_owned).toFixed(2)
-            if(value > eth_buy_value) {
+            eth_now_value = (n * eth_owned).toFixed(2)
+            if(eth_now_value > eth_buy_value) {
                 ETH_VALUE_CONTAINER.style.backgroundColor = "green";
             } else {
                 ETH_VALUE_CONTAINER.style.backgroundColor = "red";
             }
-            ETH_VALUE.innerHTML = "$ " + value;
+            ETH_VALUE.innerHTML = "$ " + eth_now_value;
             eth_last_price = n;
         } else if(number === 3) {
             if(n > xrp_last_price) {
@@ -100,13 +137,13 @@ function getCoinPrice(url, node, number) {
                 XRP_PRICE.style.color = "red";
             } 
             node.innerHTML = "$ " + n;
-            let value = (n * xrp_owned).toFixed(2)
-            if(value > xrp_buy_value) {
+            xrp_now_value = (n * xrp_owned).toFixed(2)
+            if(xrp_now_value > xrp_buy_value) {
                 XRP_VALUE_CONTAINER.style.backgroundColor = "green";
             } else {
                 XRP_VALUE_CONTAINER.style.backgroundColor = "red";
             }
-            XRP_VALUE.innerHTML = "$ " + value;
+            XRP_VALUE.innerHTML = "$ " + xrp_now_value;
             xrp_last_price = n;
         } else if(number === 4) {
             if(n > bnb_last_price) {
@@ -115,13 +152,13 @@ function getCoinPrice(url, node, number) {
                 BNB_PRICE.style.color = "red";
             } 
             node.innerHTML = "$ " + n;
-            let value = (n * bnb_owned).toFixed(2)
-            if(value > bnb_buy_value) {
+            bnb_now_value = (n * bnb_owned).toFixed(2)
+            if(bnb_now_value > bnb_buy_value) {
                 BNB_VALUE_CONTAINER.style.backgroundColor = "green";
             } else {
                 BNB_VALUE_CONTAINER.style.backgroundColor = "red";
             }
-            BNB_VALUE.innerHTML = "$ " + value;
+            BNB_VALUE.innerHTML = "$ " + bnb_now_value;
             bnb_last_price = n;
         }
     }
@@ -131,12 +168,16 @@ const GetPrices = async () => {
     // let i = 0;
     while (true) {
         getCoinPrice(btc_url, BTC_PRICE, 1);
+        updateSummary()
         await delay(2000);
         getCoinPrice(eth_url, ETH_PRICE, 2);
+        updateSummary()
         await delay(2000);
         getCoinPrice(xrp_url, XRP_PRICE, 3);
+        updateSummary()
         await delay(2000);
         getCoinPrice(bnb_url, BNB_PRICE, 4);
+        updateSummary()
         await delay(2000);
 
         // i++;
