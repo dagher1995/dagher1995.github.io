@@ -128,8 +128,8 @@ function getCoinPrice(url, node, number) {
 }
 
 const GetPrices = async () => {
-    let i = 0;
-    while (i < 5) {
+    // let i = 0;
+    while (true) {
         getCoinPrice(btc_url, BTC_PRICE, 1);
         await delay(2000);
         getCoinPrice(eth_url, ETH_PRICE, 2);
@@ -139,7 +139,7 @@ const GetPrices = async () => {
         getCoinPrice(bnb_url, BNB_PRICE, 4);
         await delay(2000);
 
-        i++;
+        // i++;
     }
   };
 
