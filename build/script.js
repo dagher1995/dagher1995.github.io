@@ -61,10 +61,14 @@ function justSet(name, short_name, link, result, owned) {
     if(coin_selected == 3) {
         coin_selected_owned_node.innerHTML = parseFloat(owned).toFixed(2);
         coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(4);
+    } else if(coin_selected == 4) {
+        coin_selected_owned_node.innerHTML = parseFloat(owned).toFixed(7);
+        coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(2);
     } else {
         coin_selected_owned_node.innerHTML = owned;
         coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(2);
     }
+
     coin_selected_owned_value_node.innerHTML = "≈ $" + parseFloat(owned * result).toFixed(2);
 }
 
