@@ -126,7 +126,7 @@
     border-radius: 50px;
     border: 2px solid white;
     width: 100%;
-    height: 80px;
+    height: 70px;
     padding: 10px;
     background-color: #4e4c50;
     display: flex;
@@ -137,6 +137,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 5px;
 }
 
 .name-secondary {
@@ -145,7 +146,7 @@
 }
 
 .name-secondary .name {
-    margin-bottom: 3px;
+    margin-bottom: 5px;
     font-size: 20px;
     font-weight: bold;
 }
@@ -176,11 +177,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    margin-right: 5px;
 }
 
 .right-part .coin-value {
     font-size: 20px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .right-part .coin-owned {
