@@ -25,7 +25,7 @@ capital_investmetn_node.innerHTML = "$ " + capital_investmetn
 let btc_owned = 0.0;
 let eth_owned = 0.0395604;
 let xrp_owned = 165.00;
-let bnb_owned = 0.000121477;
+let bnb_owned = 0.00121477;
 
 btc_owned_node.innerHTML = parseFloat(btc_owned).toFixed(2);
 eth_owned_node.innerHTML = eth_owned;
