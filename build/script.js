@@ -62,6 +62,7 @@ function justSet(name, short_name, link, result, owned) {
         coin_selected_owned_node.innerHTML = parseFloat(owned).toFixed(2);
         coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(4);
     } else {
+        coin_selected_owned_node.innerHTML = owned;
         coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(2);
     }
     coin_selected_owned_value_node.innerHTML = "≈ $" + parseFloat(owned * result).toFixed(2);
