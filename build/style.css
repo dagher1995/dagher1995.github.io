@@ -1,130 +1,13 @@
-body {
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.main-card {
-    /* border-style: solid; */
-    border-color: #000000;
-    position: absolute;
-    top: 30px; 
-    height: 700px;
-    width: 600px;
+.container {
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    background: linear-gradient(to bottom left, #4a3d61, #110c10);
 }
-
-.coins-prices-container {
-    display: flex; /* magic maker */
-    justify-content: space-around; /* set equal space between boxes */
-    margin-top: 20px;
-}
-
-.price-card {
-    margin-top: 5px;
-    display: flex;
-    width: 250px;
-    height: 200px;
-    /* border-style: solid; */
-    border-color: #b82323;
-    position: relative;
-}
-
-.coin-icon {
-    margin-top: 5px;
-    margin-left: 5px;
-    width: 70px;
-    height: 70px;
-}
-
-.coin-name {
-    margin-top: 20px;
-    margin-left: 30px;
-    color: #000000;
-    font-size: 30px;
-    font-family: sans-serif;
-    font-weight: bold;
-}
-
-.coin-price {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    margin-top: 70px;
-    font-size: 25px;
-    font-family: sans-serif;
-    font-weight: bold;
-}
-
-.coin-owned {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: right;
-    margin-right: 5px;
-    margin-top: 120px;
-    font-size: 23px;
-    font-family: sans-serif;
-    font-weight: bold;
-}
-
-.price-value-container {
-    position: absolute;
-    background-color: #ff2f2f;
-    height: 30px;
-    bottom: 10px;
-    left: 65px;
-    right: 65px;
-}
-
-.coin-value {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    margin-bottom: 10px;
-    color: white;
-    font-size: 22px;
-    font-family: sans-serif;
-    font-weight: bold;
-}
-
-.total-summary-container {
-    position: absolute;
-    height: 200px;
-    /* border-style: solid; */
-    left: 0;
-    right: 0;
-    margin-top: 20px;
-
-}
-
-#summary-table {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    border-collapse: collapse;
-    width: 90%;
-    direction: rtl;
-    margin: auto;
-    margin-top: 20px;
-  }
-  
-  #summary-table td, #summary-table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-size: 25px;
-  }
-  
-  #summary-table tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #summary-table tr:hover {background-color: #ddd;}
-  
-  #summary-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
-  }
