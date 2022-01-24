@@ -102,7 +102,7 @@
 }
 
 .coins-owned {
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .bottom-part {
@@ -112,7 +112,7 @@
 
 .bottom-layout {
     color: white;
-    width: 80%;
+    width: 85%;
     height: 300px;
     margin: 20px auto 10px auto;
     /* border: 1px solid white; */
