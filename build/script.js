@@ -90,8 +90,8 @@ function getCurrentPrice(url, node, number) {
 }
 
 const GetPrices = async () => {
-    // let i = 0;
-    while(true) {
+    let i = 0;
+    while(i < 3) {
         getCurrentPrice(btc_url, btc_current_price_node, 1);
         await delay(2000);
         getCurrentPrice(eth_url, eth_current_price_node, 2);
@@ -100,7 +100,7 @@ const GetPrices = async () => {
         await delay(2000);
         getCurrentPrice(bnb_url, bnb_current_price_node, 4);
         await delay(2000);
-        // i++;
+        i++;
     }
     
 }
