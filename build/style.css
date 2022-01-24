@@ -55,7 +55,7 @@
 .main-card {
     border-radius: 30px;
     border: 3px solid white;
-    width: 175px;
+    width: 190px;
     height: 160px;
     padding: 10px;
     display: flex;
@@ -103,10 +103,17 @@
 
 .coins-owned {
     font-size: 20px;
+    align-self: flex-start;
+}
+
+.coins-owned-value {
+    font-size: 15px;
+    align-self: flex-start;
+    color: #e5e3e6;
 }
 
 .bottom-part {
-    font-size: 20px;
+    font-size: 23px;
     font-weight: bold;
 }
 
