@@ -43,8 +43,8 @@
 .middle-layout {
     color: white;
     width: 80%;
-    height: 250px;
-    margin: 20px auto 10px auto;
+    height: 200px;
+    margin: 15px auto 10px auto;
     border: 1px solid white;
     display: flex;
     flex-direction: column;
@@ -55,15 +55,65 @@
 .main-card {
     border-radius: 30px;
     border: 2px solid white;
-    width: 170px;
-    height: 170px;
-    padding: 20px;
+    width: 175px;
+    height: 160px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right,  #e62dc7, rgb(46, 159, 235));
+}
+
+.top-part {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    /* border: solid white; */
+}
+
+.icon-part {
+    background-color: white;
+    border-radius: 60px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.icon {
+    width: 50px;
+}
+
+.name-part {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.name-complet {
+    margin: 5px 0 5px 0;
+}
+.name-short {
+    margin: 0px 0 5px 0;
+}
+
+.coins-owned {
+    font-size: 15px;
+}
+
+.bottom-part {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .bottom-layout {
     color: white;
     width: 80%;
-    height: 250px;
+    height: 300px;
     margin: 20px auto 10px auto;
     border: 1px solid white;
     display: flex;
@@ -76,6 +126,6 @@
     border-radius: 30px;
     border: 2px solid white;
     width: 100%;
-    height: 60px;
+    height: 80px;
     padding: 20px;
 }
