@@ -99,6 +99,8 @@
 }
 .name-short {
     margin: 0px 0 5px 0;
+    color: #a9a6aa;
+    font-size: 15px;
 }
 
 .coins-owned {
