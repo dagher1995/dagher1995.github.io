@@ -12,6 +12,18 @@ let eth_owned_node = document.getElementById("eth-owned");
 let xrp_owned_node = document.getElementById("xrp-owned");
 let bnb_owned_node = document.getElementById("bnb-owned");
 
+let usd_button = document.getElementById("usd_button");
+let omr_button = document.getElementById("omr_button");
+
+let isOMR = false;
+
+usd_button.addEventListener('click', (e)=>{
+    isOMR = false;
+});
+
+omr_button.addEventListener('click', (e)=>{
+    isOMR = true;
+  });
 
 //OMR 
 let dagher_paid = 50;
@@ -19,7 +31,7 @@ let laith_paid = 50;
 
 //calculating capital investment in USD
 let capital_investmetn = parseFloat((dagher_paid + laith_paid) / 0.385).toFixed(3);
-capital_investmetn_node.innerHTML = "$ " + capital_investmetn
+capital_investmetn_node.innerHTML = "$" + capital_investmetn
 
 //coins owned
 let btc_owned = 0.0;
@@ -60,16 +72,34 @@ function justSet(name, short_name, link, result, owned) {
     
     if(coin_selected == 3) {
         coin_selected_owned_node.innerHTML = parseFloat(owned).toFixed(2);
-        coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(4);
+        if(isOMR) {
+            coin_selected_current_price_node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(3);
+        } else {
+            coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(4);
+        }
     } else if(coin_selected == 4) {
         coin_selected_owned_node.innerHTML = parseFloat(owned).toFixed(7);
-        coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(2);
+        if(isOMR) {
+            coin_selected_current_price_node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
+        } else {
+            coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(2);
+        }
+
     } else {
         coin_selected_owned_node.innerHTML = owned;
-        coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(2);
+        if(isOMR) {
+            coin_selected_current_price_node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
+        } else {
+            coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(2);
+        }
+        
     }
-
-    coin_selected_owned_value_node.innerHTML = "≈ $" + parseFloat(owned * result).toFixed(2);
+    if(isOMR) {
+        coin_selected_owned_value_node.innerHTML = "≈ OR " + parseFloat(owned * result * 0.385).toFixed(2);
+    } else {
+        coin_selected_owned_value_node.innerHTML = "≈ $" + parseFloat(owned * result).toFixed(2);
+    }
+    
 }
 
 function setupCoinSelected(result) {
@@ -105,8 +135,15 @@ const Http = new XMLHttpRequest();
 function calculateTotalWallet() {
     total_wallet = btc_owned_value + eth_owned_value + xrp_owned_value + bnb_owned_value;
     earnings_value = total_wallet - capital_investmetn;
-    total_wallet_node.innerHTML = "$" + parseFloat(total_wallet).toFixed(3);
-    earnings_value_node.innerHTML = "$" + parseFloat(earnings_value).toFixed(3);
+    if(isOMR) {
+        capital_investmetn_node.innerHTML = "OR " + parseFloat(capital_investmetn * 0.385).toFixed(3);
+        total_wallet_node.innerHTML = "OR " + parseFloat(total_wallet * 0.385).toFixed(3);
+        earnings_value_node.innerHTML = "OR " + parseFloat(earnings_value * 0.385).toFixed(3);
+    } else {
+        capital_investmetn_node.innerHTML = "$" + capital_investmetn
+        total_wallet_node.innerHTML = "$" + parseFloat(total_wallet).toFixed(3);
+        earnings_value_node.innerHTML = "$" + parseFloat(earnings_value).toFixed(3);
+    }
 }
 
 function getCurrentPrice(url, node, number) {
@@ -117,22 +154,38 @@ function getCurrentPrice(url, node, number) {
         
         if(number === 1) {
             btc_owned_value = result * btc_owned;
-            node.innerHTML = "$" + parseFloat(result).toFixed(2);
+            if(isOMR) {
+                node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
+            } else {
+                node.innerHTML = "$" + parseFloat(result).toFixed(2);
+            }
             coin_selected = 1;
             setupCoinSelected(result);
         } else if(number === 2) {
             eth_owned_value = result * eth_owned;
-            node.innerHTML = "$" + parseFloat(result).toFixed(2);
+            if(isOMR) {
+                node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
+            } else {
+                node.innerHTML = "$" + parseFloat(result).toFixed(2);
+            }
             coin_selected = 2;
             setupCoinSelected(result);
         } else if(number === 3) {
             xrp_owned_value = result * xrp_owned;
-            node.innerHTML = "$" + parseFloat(result).toFixed(4);
+            if(isOMR) {
+                node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
+            } else {
+                node.innerHTML = "$" + parseFloat(result).toFixed(2);
+            }
             coin_selected = 3;
             setupCoinSelected(result);
         } else if(number === 4) {
             bnb_owned_value = result * bnb_owned;
-            node.innerHTML = "$" + parseFloat(result).toFixed(2);
+            if(isOMR) {
+                node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
+            } else {
+                node.innerHTML = "$" + parseFloat(result).toFixed(2);
+            }
             coin_selected = 4;
             setupCoinSelected(result);
         }

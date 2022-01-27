@@ -5,69 +5,114 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Crypto</title>
+    <title>Crypto Wallet</title>
 </head>
 <body>
-    <div class="main-card">
-        <div class="coins-prices-container">
-            <div class="btc-price-card price-card">
-                <object class="coin-icon" data="icons/bitcoin.svg"> </object>
-                <label for="coin_name" class="coin-name">BTC</label>
-                <label id="btc-price" for="price" class="coin-price">$43310.44</label>
-                <label id="btc-owned" for="coin-owned" class="coin-owned">لدينا: 0.023232</label>
-                <div id="btc-value-container" class="price-value-container"></div>
-                <label id="btc-value" for="coin-value" class="coin-value">$0</label>
+
+    <div class="container">
+        <div class="top-layout">
+            <div class="top-item">
+                <label for="" class="name-label">Earnings</label>
+                <label id="earnings_value_node" for="" class="value-label">$50.891</label>
             </div>
-            <div class="eth-price-card price-card">
-                <object class="coin-icon" data="icons/ethereum.svg"> </object>
-                <label for="coin_name" class="coin-name">ETH</label>
-                <label id="eth-price" for="price" class="coin-price">$3310.44</label>
-                <label id="eth-owned" for="coin-owned" class="coin-owned">لدينا: 0.023232</label>
-                <div id="eth-value-container" class="price-value-container"></div>
-                <label id="eth-value" for="coin-value" class="coin-value">$0</label>
+            <div class="top-item">
+                <label for="" class="name-label">Capital</label>
+                <label id="capital_investmetn" for="" class="value-label">$50.891</label>
             </div>
-        </div>
-        <div class="coins-prices-container">
-            <div class="xrp-price-card price-card">
-                <object class="coin-icon" data="icons/ripple.svg"> </object>
-                <label for="coin_name" class="coin-name">XRP</label>
-                <label id="xrp-price" for="price" class="coin-price">$0.7745</label>
-                <label id="xrp-owned" for="coin-owned" class="coin-owned">لدينا: 0.023232</label>
-                <div id="xrp-value-container" class="price-value-container"></div>
-                <label id="xrp-value" for="coin-value" class="coin-value">$0</label>
-            </div>
-            <div class="bnb-price-card price-card">
-                <object class="coin-icon" data="icons/bnb.svg"> </object>
-                <label for="coin_name" class="coin-name">BNB</label>
-                <label id="bnb-price" for="price" class="coin-price">$410.44</label>
-                <label id="bnb-owned" for="coin-owned" class="coin-owned">لدينا: 0.023232</label>
-                <div id="bnb-value-container" class="price-value-container"></div>
-                <label id="bnb-value" for="coin-value" class="coin-value">$0</label>
+            <div class="top-item">
+                <label for="" class="name-label">Total Wallet</label>
+                <label id="total_wallet_node" for="" class="value-label">$50.891</label>
             </div>
         </div>
 
-        <div class="total-summary-container">
-            <table id="summary-table" class="table-summary">
-                <tr>
-                    <td>مجموع المحفظة</td>
-                    <td id="total-table-usd">$ 123</td>
-                    <td id="total-table-omr">OMR 242</td>
-                  </tr>
-                  <tr>
-                    <td>رأس المال</td>
-                    <td id="original-table-usd">$ 123</td>
-                    <td id="original-table-omr">OMR 242</td>
-                  </tr>
-                  <tr>
-                    <td>الأرباح</td>
-                    <td id="profit-table-usd">$ 123</td>
-                    <td id="profit-table-omr">OMR 242</td>
-                  </tr>
-            </table>
+        <div class="middle-layout">
+            <div class="main-card">
+                <div class="top-part">
+                    <div class="name-part">
+                        <label id="selected_coin_name" for="" class="name-complet">Bitcoin</label>
+                        <label id="selected_coin_name_short" for="" class="name-short">BTC</label>
+                    </div>
+                    <div class="icon-part">
+                        <img id="selected_icon" class="icon" src="icons/bitcoin.svg" alt="">
+                    </div>
+                </div>
+                <div class="middle-part">
+                    <label id="coin_selected_owned" for="" class="coins-owned">0.0395604</label>
+                    <label id="coin_selected_owned_value" for="" class="coins-owned-value">≈ $121.32</label>
+                </div>
+                <div class="bottom-part">
+                    <label id="coin_selected_current_price" for="" class="coin-value">$35212.33</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-layout">
+            <div class="secondary-card">
+                <div class="left-part">
+                    <div class="icon-secondary">
+                        <img src="icons/bitcoin.svg" alt="">
+                    </div>
+                    <div class="name-secondary">
+                        <label for="" class="name">Bitcoin</label>
+                        <label for="" class="short-name">BTC</label>
+                    </div>
+                </div>
+                <div class="right-part">
+                    <label id="btc_current_price" for="" class="coin-value">$123.321</label>
+                    <label id="btc-owned" for="" class="coin-owned">0.023332</label>
+                </div>
+            </div>
+            <div class="secondary-card">
+                <div class="left-part">
+                    <div class="icon-secondary">
+                        <img src="icons/ethereum.svg" alt="">
+                    </div>
+                    <div class="name-secondary">
+                        <label for="" class="name">Ethereum</label>
+                        <label for="" class="short-name">ETH</label>
+                    </div>
+                </div>
+                <div class="right-part">
+                    <label id="eth_current_price" for="" class="coin-value">$123.321</label>
+                    <label id="eth-owned" for="" class="coin-owned">0.023332</label>
+                </div>
+            </div>
+            <div class="secondary-card">
+                <div class="left-part">
+                    <div class="icon-secondary">
+                        <img src="icons/ripple.svg" alt="">
+                    </div>
+                    <div class="name-secondary">
+                        <label for="" class="name">Ripple</label>
+                        <label for="" class="short-name">XRP</label>
+                    </div>
+                </div>
+                <div class="right-part">
+                    <label id="xrp_current_price" for="" class="coin-value">$123.321</label>
+                    <label id="xrp-owned" for="" class="coin-owned">0.023332</label>
+                </div>
+            </div>
+            <div class="secondary-card">
+                <div class="left-part">
+                    <div class="icon-secondary">
+                        <img src="icons/bnb.svg" alt="">
+                    </div>
+                    <div class="name-secondary">
+                        <label for="" class="name">Binance</label>
+                        <label for="" class="short-name">BNB</label>
+                    </div>
+                </div>
+                <div class="right-part">
+                    <label id="bnb_current_price" for="" class="coin-value">$123.321</label>
+                    <label id="bnb-owned" for="" class="coin-owned">0.023354</label>
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="usd_button" class="usd-button">USD</button>
+                <button id="omr_button"class="omr-button">OMR</button>
+            </div>
         </div>
     </div>
-    
-
     <script src="script.js"></script>
 </body>
 </html>

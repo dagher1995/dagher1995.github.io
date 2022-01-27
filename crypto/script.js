@@ -1,187 +1,212 @@
-let BTC_PRICE = document.getElementById('btc-price');
-let ETH_PRICE = document.getElementById('eth-price');
-let XRP_PRICE = document.getElementById('xrp-price');
-let BNB_PRICE = document.getElementById('bnb-price');
+let btc_current_price_node = document.getElementById("btc_current_price");
+let eth_current_price_node = document.getElementById("eth_current_price");
+let xrp_current_price_node = document.getElementById("xrp_current_price");
+let bnb_current_price_node = document.getElementById("bnb_current_price");
 
-let BTC_OWNED = document.getElementById('btc-owned');
-let ETH_OWNED = document.getElementById('eth-owned');
-let XRP_OWNED = document.getElementById('xrp-owned');
-let BNB_OWNED = document.getElementById('bnb-owned');
+let capital_investmetn_node = document.getElementById("capital_investmetn");
+let total_wallet_node = document.getElementById("total_wallet_node");
+let earnings_value_node = document.getElementById("earnings_value_node");
 
-let BTC_VALUE = document.getElementById('btc-value');
-let ETH_VALUE = document.getElementById('eth-value');
-let XRP_VALUE = document.getElementById('xrp-value');
-let BNB_VALUE = document.getElementById('bnb-value');
+let btc_owned_node = document.getElementById("btc-owned");
+let eth_owned_node = document.getElementById("eth-owned");
+let xrp_owned_node = document.getElementById("xrp-owned");
+let bnb_owned_node = document.getElementById("bnb-owned");
 
-let BTC_VALUE_CONTAINER = document.getElementById('btc-value-container');
-let ETH_VALUE_CONTAINER = document.getElementById('eth-value-container');
-let XRP_VALUE_CONTAINER = document.getElementById('xrp-value-container');
-let BNB_VALUE_CONTAINER = document.getElementById('bnb-value-container');
+let usd_button = document.getElementById("usd_button");
+let omr_button = document.getElementById("omr_button");
 
-let TOTAL_TABLE_USD = document.getElementById('total-table-usd');
-let TOTAL_TABLE_OMR = document.getElementById('total-table-omr');
-let ORIGINAL_TABLE_USD = document.getElementById('original-table-usd');
-let ORIGINAL_TABLE_OMR = document.getElementById('original-table-omr');
-let PROFIT_TABLE_USD = document.getElementById('profit-table-usd');
-let PROFIT_TABLE_OMR = document.getElementById('profit-table-omr');
+let isOMR = false;
 
+usd_button.addEventListener('click', (e)=>{
+    isOMR = false;
+});
+
+omr_button.addEventListener('click', (e)=>{
+    isOMR = true;
+  });
+
+//OMR 
+let dagher_paid = 50;
+let laith_paid = 50;
+
+//calculating capital investment in USD
+let capital_investmetn = parseFloat((dagher_paid + laith_paid) / 0.385).toFixed(3);
+capital_investmetn_node.innerHTML = "$" + capital_investmetn
+
+//coins owned
+let btc_owned = 0.0;
+let eth_owned = 0.0395604;
+let xrp_owned = 165.00;
+let bnb_owned = 0.00121477;
+
+btc_owned_node.innerHTML = parseFloat(btc_owned).toFixed(2);
+eth_owned_node.innerHTML = eth_owned;
+xrp_owned_node.innerHTML = parseFloat(xrp_owned).toFixed(2);
+bnb_owned_node.innerHTML = bnb_owned;
+
+let total_wallet = 0.0;
+total_wallet_node.innerHTML ="$" + total_wallet;
+
+let btc_owned_value = 0.0;
+let eth_owned_value = 0.0;
+let xrp_owned_value = 0.0;
+let bnb_owned_value = 0.0;
+
+let earnings_value = total_wallet - capital_investmetn;
+earnings_value_node.innerHTML = "$" + parseFloat(earnings_value).toFixed(3);
+
+// selected card nodes
+let selected_icon_node = document.getElementById("selected_icon");
+let selected_coin_name_node = document.getElementById("selected_coin_name");
+let selected_coin_name_short_node = document.getElementById("selected_coin_name_short");
+let coin_selected_owned_node = document.getElementById("coin_selected_owned");
+let coin_selected_owned_value_node = document.getElementById("coin_selected_owned_value");
+let coin_selected_current_price_node = document.getElementById("coin_selected_current_price");
+
+let coin_selected = 1;
+
+function justSet(name, short_name, link, result, owned) {
+    selected_coin_name_node.innerHTML = name;
+    selected_coin_name_short_node.innerHTML = short_name;
+    selected_icon_node.src = link;
+    
+    if(coin_selected == 3) {
+        coin_selected_owned_node.innerHTML = parseFloat(owned).toFixed(2);
+        if(isOMR) {
+            coin_selected_current_price_node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(3);
+        } else {
+            coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(4);
+        }
+    } else if(coin_selected == 4) {
+        coin_selected_owned_node.innerHTML = parseFloat(owned).toFixed(7);
+        if(isOMR) {
+            coin_selected_current_price_node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
+        } else {
+            coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(2);
+        }
+
+    } else {
+        coin_selected_owned_node.innerHTML = owned;
+        if(isOMR) {
+            coin_selected_current_price_node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
+        } else {
+            coin_selected_current_price_node.innerHTML = "$" + parseFloat(result).toFixed(2);
+        }
+        
+    }
+    if(isOMR) {
+        coin_selected_owned_value_node.innerHTML = "≈ OR " + parseFloat(owned * result * 0.385).toFixed(2);
+    } else {
+        coin_selected_owned_value_node.innerHTML = "≈ $" + parseFloat(owned * result).toFixed(2);
+    }
+    
+}
+
+function setupCoinSelected(result) {
+    if (coin_selected === 1) {
+        justSet("Bitcoin", "BTC", "icons/bitcoin.svg", result, btc_owned);
+    } else if (coin_selected === 2) {
+        justSet("Ethereum", "ETH", "icons/ethereum.svg", result, eth_owned);
+    } else if (coin_selected === 3) {
+        justSet("Ripple", "XRP", "icons/ripple.svg", result, xrp_owned);
+    } else if (coin_selected === 4) {
+        justSet("Binance", "BNB", "icons/bnb.svg", result, bnb_owned);
+    }
+}
+
+setupCoinSelected();
+
+//URL 
 const btc_url='https://api3.binance.com/api/v3/ticker/price?symbol=BTCUSDT';
 const eth_url='https://api3.binance.com/api/v3/ticker/price?symbol=ETHUSDT';
 const xrp_url='https://api3.binance.com/api/v3/ticker/price?symbol=XRPUSDT';
 const bnb_url='https://api3.binance.com/api/v3/ticker/price?symbol=BNBUSDT';
 
-btc_last_price = 0.0;
-eth_last_price = 0.0;
-xrp_last_price = 0.0;
-bnb_last_price = 0.0;
-
-let btc_owned = 0.0;
-let eth_owned = 0.0395604;
-let xrp_owned = 165.0;
-let bnb_owned = 0.00121477;
-
-// values in OMR converted to usd
-let btc_buy_value = 0.0 / 0.385;
-let eth_buy_value = 50.0 / 0.385; 
-let xrp_buy_value = 50.0 / 0.385;
-let bnb_buy_value = 0.5;
-
-let btc_now_value = 0.0;
-let eth_now_value = 0.0; 
-let xrp_now_value = 0.0;
-let bnb_now_value = 0.0;
-
-//people paid
-let dagher = 50;
-let laith = 50;
-let ghaiht = 0;
-let suliman = 0;
-
-BTC_OWNED.innerHTML = "لدينا: " + btc_owned;
-ETH_OWNED.innerHTML = "لدينا: " + eth_owned;
-XRP_OWNED.innerHTML = "لدينا: " + xrp_owned;
-BNB_OWNED.innerHTML = "لدينا: " + bnb_owned;
-
+//make delay
 const delay = ms => new Promise(res => setTimeout(res, ms));
-
-const Http = new XMLHttpRequest();
- 
 
 function getPrice(url) {
     Http.open("GET", url);
     Http.send();
 }
 
-function updateSummary() {
-    total_usd = parseFloat(btc_now_value) + parseFloat(eth_now_value) + parseFloat(xrp_now_value) + parseFloat(bnb_now_value);
-    TOTAL_TABLE_USD.innerHTML =  parseFloat(total_usd).toFixed(3) + " $";
-    TOTAL_TABLE_OMR.innerHTML = "OMR " + parseFloat(total_usd*0.385).toFixed(3);
-    let origin = parseFloat(dagher+laith+ghaiht+suliman)
-    ORIGINAL_TABLE_USD.innerHTML = parseFloat(origin / 0.385).toFixed(3) + " $";
-    ORIGINAL_TABLE_OMR.innerHTML = "OMR " + parseFloat(origin).toFixed(3);
-    let profit_usd = parseFloat(total_usd - (origin/0.385)).toFixed(3);
-    if(profit_usd > 0) {
-        PROFIT_TABLE_USD.style.color = "green";
-        PROFIT_TABLE_OMR.style.color = "green";
+const Http = new XMLHttpRequest();
+
+function calculateTotalWallet() {
+    total_wallet = btc_owned_value + eth_owned_value + xrp_owned_value + bnb_owned_value;
+    earnings_value = total_wallet - capital_investmetn;
+    if(isOMR) {
+        capital_investmetn_node.innerHTML = "OR " + parseFloat(capital_investmetn * 0.385).toFixed(3);
+        total_wallet_node.innerHTML = "OR " + parseFloat(total_wallet * 0.385).toFixed(3);
+        earnings_value_node.innerHTML = "OR " + parseFloat(earnings_value * 0.385).toFixed(3);
     } else {
-        PROFIT_TABLE_USD.style.color = "red";
-        PROFIT_TABLE_OMR.style.color = "red";
+        capital_investmetn_node.innerHTML = "$" + capital_investmetn
+        total_wallet_node.innerHTML = "$" + parseFloat(total_wallet).toFixed(3);
+        earnings_value_node.innerHTML = "$" + parseFloat(earnings_value).toFixed(3);
     }
-    PROFIT_TABLE_USD.innerHTML = parseFloat(profit_usd).toFixed(3) + " $";
-    PROFIT_TABLE_OMR.innerHTML = "OMR " + parseFloat(profit_usd*0.385).toFixed(3);
 }
 
-function getCoinPrice(url, node, number) {
-    getPrice(url)
+function getCurrentPrice(url, node, number) {
+    getPrice(url);
     Http.onreadystatechange = (e) => {
         let json = JSON.parse(Http.responseText);
-        let n = parseFloat(JSON.stringify(json.price).replace("\"", "").replace("\"", ""));
-        // while (n.charAt(n.length - 1) == '0') {
-        //     n = n.slice(0, -1);
-        //   }
-
+        let result = parseFloat(JSON.stringify(json.price).replace("\"", "").replace("\"", ""));
+        
         if(number === 1) {
-            if(n > btc_last_price) {
-                BTC_PRICE.style.color = "green";
-            } else if(n < btc_last_price) {
-                BTC_PRICE.style.color = "red";
-            } 
-            node.innerHTML = "$ " + n;
-            btc_now_value = (n * btc_owned).toFixed(2)
-            if(btc_now_value > btc_buy_value) {
-                BTC_VALUE_CONTAINER.style.backgroundColor = "green";
+            btc_owned_value = result * btc_owned;
+            if(isOMR) {
+                node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
             } else {
-                BTC_VALUE_CONTAINER.style.backgroundColor = "red";
+                node.innerHTML = "$" + parseFloat(result).toFixed(2);
             }
-            BTC_VALUE.innerHTML = "$ " + btc_now_value;
-            btc_last_price = n;
+            coin_selected = 1;
+            setupCoinSelected(result);
         } else if(number === 2) {
-            if(n > eth_last_price) {
-                ETH_PRICE.style.color = "green";
-            } else if(n < eth_last_price) {
-                ETH_PRICE.style.color = "red";
-            } 
-            node.innerHTML = "$ " + n;
-            eth_now_value = (n * eth_owned).toFixed(2)
-            if(eth_now_value > eth_buy_value) {
-                ETH_VALUE_CONTAINER.style.backgroundColor = "green";
+            eth_owned_value = result * eth_owned;
+            if(isOMR) {
+                node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
             } else {
-                ETH_VALUE_CONTAINER.style.backgroundColor = "red";
+                node.innerHTML = "$" + parseFloat(result).toFixed(2);
             }
-            ETH_VALUE.innerHTML = "$ " + eth_now_value;
-            eth_last_price = n;
+            coin_selected = 2;
+            setupCoinSelected(result);
         } else if(number === 3) {
-            if(n > xrp_last_price) {
-                XRP_PRICE.style.color = "green";
-            } else if(n < xrp_last_price) {
-                XRP_PRICE.style.color = "red";
-            } 
-            node.innerHTML = "$ " + n;
-            xrp_now_value = (n * xrp_owned).toFixed(2)
-            if(xrp_now_value > xrp_buy_value) {
-                XRP_VALUE_CONTAINER.style.backgroundColor = "green";
+            xrp_owned_value = result * xrp_owned;
+            if(isOMR) {
+                node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
             } else {
-                XRP_VALUE_CONTAINER.style.backgroundColor = "red";
+                node.innerHTML = "$" + parseFloat(result).toFixed(2);
             }
-            XRP_VALUE.innerHTML = "$ " + xrp_now_value;
-            xrp_last_price = n;
+            coin_selected = 3;
+            setupCoinSelected(result);
         } else if(number === 4) {
-            if(n > bnb_last_price) {
-                BNB_PRICE.style.color = "green";
-            } else if(n < bnb_last_price) {
-                BNB_PRICE.style.color = "red";
-            } 
-            node.innerHTML = "$ " + n;
-            bnb_now_value = (n * bnb_owned).toFixed(2)
-            if(bnb_now_value > bnb_buy_value) {
-                BNB_VALUE_CONTAINER.style.backgroundColor = "green";
+            bnb_owned_value = result * bnb_owned;
+            if(isOMR) {
+                node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
             } else {
-                BNB_VALUE_CONTAINER.style.backgroundColor = "red";
+                node.innerHTML = "$" + parseFloat(result).toFixed(2);
             }
-            BNB_VALUE.innerHTML = "$ " + bnb_now_value;
-            bnb_last_price = n;
+            coin_selected = 4;
+            setupCoinSelected(result);
         }
+        calculateTotalWallet()
     }
 }
 
 const GetPrices = async () => {
     // let i = 0;
-    while (true) {
-        getCoinPrice(btc_url, BTC_PRICE, 1);
-        updateSummary()
+    while(true) {
+        getCurrentPrice(btc_url, btc_current_price_node, 1);
         await delay(2000);
-        getCoinPrice(eth_url, ETH_PRICE, 2);
-        updateSummary()
+        getCurrentPrice(eth_url, eth_current_price_node, 2);
         await delay(2000);
-        getCoinPrice(xrp_url, XRP_PRICE, 3);
-        updateSummary()
+        getCurrentPrice(xrp_url, xrp_current_price_node, 3);
         await delay(2000);
-        getCoinPrice(bnb_url, BNB_PRICE, 4);
-        updateSummary()
+        getCurrentPrice(bnb_url, bnb_current_price_node, 4);
         await delay(2000);
-
         // i++;
     }
-  };
+    
+}
 
-  GetPrices();
+GetPrices();
