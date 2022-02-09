@@ -175,7 +175,7 @@ function getCurrentPrice(url, node, number) {
             if(isOMR) {
                 node.innerHTML = "OR " + parseFloat(result * 0.385).toFixed(2);
             } else {
-                node.innerHTML = "$" + parseFloat(result).toFixed(2);
+                node.innerHTML = "$" + parseFloat(result).toFixed(4);
             }
             coin_selected = 3;
             setupCoinSelected(result);
